@@ -33,7 +33,7 @@ class Media {
   }
 
   getAverageRating() {
-  	let average = Math.floor((this.ratings.reduce((acc, cur) => acc + cur))/this.ratings.length);
+  	let average = Math.round((this.ratings.reduce((acc, cur) => acc + cur))/this.ratings.length);
   	return average;
   }
 
@@ -84,9 +84,13 @@ console.log(`Book name: ${historyOfEverything.title}\nItem checked out: ${histor
 historyOfEverything.addRating(4);
 historyOfEverything.addRating(5);
 historyOfEverything.addRating(5);
-console.log(historyOfEverything.getAverageRating());
+console.log(`The average ratings of this book is: ${historyOfEverything.getAverageRating()}\n`);
 
 //Movie Instance
 const speed = new Movie('Jan de Bont', 'Speed', 116);
 speed.toggleCheckOutStatus();
-console.log(speed.isCheckedOut);
+console.log(`Movie title: ${speed.title}\nItem checked out: ${speed.isCheckedOut}`);
+speed.addRating(1);
+speed.addRating(2);
+speed.addRating(5);
+console.log(`The average ratings of this movie is: ${speed.getAverageRating()}`);
