@@ -27,6 +27,16 @@ class Media {
   get ratings() {
   	return this._ratings;
   }
+
+  toggleCheckOutStatus() {
+  	this._isCheckedOut === false ? this._isCheckedOut = true : this._isCheckedOut = false;
+  }
+
+  getAverageRating() {
+  	let reducer = (accumulator, currentValue) => {accumulator + currentValue};
+  	let average = (this._ratings.reduce(reducer))/this._ratings.length;
+  	return average;
+  }
 }
 
 //Child Classes of Media
