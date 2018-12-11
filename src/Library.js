@@ -37,6 +37,10 @@ class Media {
   	let average = (this._ratings.reduce(reducer))/this._ratings.length;
   	return average;
   }
+
+  addRating(rating) {
+    this._ratings.push(rating);
+  }
 }
 
 //Child Classes of Media
@@ -52,14 +56,6 @@ class Book {
 
   get pages() {
   	return this._pages;
-  }
-
-  getAverageRating() {
-    
-  }
-
-  toggleCheckOutStatus() {
-
   }
 
   addRating() {
