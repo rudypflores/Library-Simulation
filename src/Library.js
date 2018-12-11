@@ -33,19 +33,19 @@ class Media {
   }
 
   getAverageRating() {
-  	let reducer = (accumulator, currentValue) => {accumulator + currentValue};
-  	let average = (this._ratings.reduce(reducer))/this._ratings.length;
+  	let average = Math.floor((this.ratings.reduce((acc, cur) => acc + cur))/this.ratings.length);
   	return average;
   }
 
   addRating(rating) {
-    this._ratings.push(rating);
+    this.ratings.push(rating);
   }
 }
 
 //Child Classes of Media
-class Book {
-  constructor(author, pages) {
+class Book extends Media {
+  constructor(author, title, pages) {
+  	super(title); //adds title, rating, and checkedOut status
     this._author = author;
     this._pages = pages;
   }
@@ -57,16 +57,36 @@ class Book {
   get pages() {
   	return this._pages;
   }
+}
 
-  addRating() {
+class Movie extends Media {
+  constructor(director, title, runTime) {
+  	super(title);
+  	this._director = director;
+  	this._runTime = runTime;
+  }
 
+  get director() {
+  	return this._director;
+  }
+
+  get runTime() {
+  	return this._runTime;
   }
 }
 
-class Movie {
+//Test Cases
 
-}
+//Book Instance
+const historyOfEverything = new Book('Bill Bryson', 'A Short History of Nearly Everything', 544);
+historyOfEverything.toggleCheckOutStatus();
+console.log(`Book name: ${historyOfEverything.title}\nItem checked out: ${historyOfEverything.isCheckedOut}`);
+historyOfEverything.addRating(4);
+historyOfEverything.addRating(5);
+historyOfEverything.addRating(5);
+console.log(historyOfEverything.getAverageRating());
 
-class CD {
-
-}
+//Movie Instance
+const speed = new Movie('Jan de Bont', 'Speed', 116);
+speed.toggleCheckOutStatus();
+console.log(speed.isCheckedOut);
